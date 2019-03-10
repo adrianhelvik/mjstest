@@ -1,0 +1,14 @@
+{
+  "name": "mtest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Adrian Helvik <adrian.helvik@specifique.no>",
+  "license": "MIT",
+  "scripts": {
+    "test": "nodemon --experimental-modules run-tests.mjs"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0"
+  }
+}
