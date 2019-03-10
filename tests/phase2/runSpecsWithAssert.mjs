@@ -1,9 +1,17 @@
 import gatherSpecs from '../../src/gatherSpecs.mjs'
 import runSuite from '../../src/runSuite.mjs'
 import assert from 'assert'
+import path from 'path'
+
+const dirname = path.resolve(new URL(import.meta.url).pathname, '..')
 
 export default async () => {
-  const specs = await gatherSpecs('./exampleSpecs.mjs')
+  const specs = await gatherSpecs(
+    path.resolve(
+      dirname,
+      'exampleSpecs.mjs'
+    )
+  )
   const eventResults = []
   const results = await runSuite(specs)
     .on('spec result', result => {

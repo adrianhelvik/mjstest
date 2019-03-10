@@ -13,6 +13,11 @@ const phases = [
   [
     './tests/phase2/runSpecsWithAssert.mjs',
   ],
+  [
+    () => console.log('-- output from integration of tests --'),
+    './tests/phase3/integration.mjs',
+    () => console.log('-- // output from integration of tests --'),
+  ],
 ]
 
 void async function () {
@@ -23,6 +28,10 @@ void async function () {
     const errors = []
     console.log(chalk.gray(chalk.bold(`Running phase ${i+1} tests`)))
     for (const filename of tests) {
+      if (typeof filename === 'function') {
+        await filename()
+        continue
+      }
       try {
         const value = await import(filename)
         if (typeof value.default === 'function')
