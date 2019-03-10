@@ -1,4 +1,4 @@
-# @adrianhelvik/test - A test runner for .mjs projects
+# mtest - A test runner for .mjs projects
 
 **Important: beforeEach, afterEach, beforeAll and afterAll is not yet implemented**
 
