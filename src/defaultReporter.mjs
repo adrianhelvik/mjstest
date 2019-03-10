@@ -16,12 +16,12 @@ export default class DefaultReporter {
     process.stdout.write(message + '\n')
   }
 
-  onBeforeTests(files) {
+  onBeforeTests({ files, pattern }) {
     if (this.options.clear !== false) {
       this.print(FULL_CLEAR)
       this.print(CLEAR)
     }
-    this.println(chalk.bold.gray('Running tests'))
+    this.println(chalk.bold.gray('Running tests in ' + pattern.replace(process.cwd(), '.')))
     this.println('')
   }
 

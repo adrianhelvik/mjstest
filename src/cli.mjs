@@ -1,9 +1,15 @@
+import chalk from 'chalk'
 import runTests from '.'
 import path from 'path'
 
+const defaultPattern = './**/*.spec.mjs'
+const testPattern = process.argv[2] || defaultPattern
+
 const pattern = path.resolve(
   process.cwd(),
-  process.argv[2]
+  testPattern,
 )
 
-runTests(pattern)
+setTimeout(() => {
+  runTests(pattern)
+}, 500)

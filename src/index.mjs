@@ -23,7 +23,7 @@ export default async function runTests(pattern, options = {}) {
   const allResults = []
   let success = true
 
-  reporter.onBeforeTests(files)
+  reporter.onBeforeTests({ pattern, files })
 
   for (const file of files) {
     let fileSuccess = true
