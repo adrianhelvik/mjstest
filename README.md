@@ -1,5 +1,7 @@
 # @adrianhelvik/test - A test runner for .mjs projects
 
+*Important: beforeEach, afterEach, beforeAll and afterAll is not yet implemented*
+
 We are at the point where we can use .mjs under the --experimental-modules flag.
 The implementation may still change, but it's unlikely. I wanted a testframework
 that was mjs-first instead of relying on babel.
