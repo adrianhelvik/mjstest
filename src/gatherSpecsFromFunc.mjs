@@ -17,6 +17,7 @@ async function gather(suite, name) {
   const beforeAll = global.beforeAll
   const afterAll = global.beforeAll
   const describe = global.describe
+  const test = global.test
   const it = global.it
 
   global.describe = (name, fn) => {
@@ -28,7 +29,7 @@ async function gather(suite, name) {
     })
   }
 
-  global.it = (name, fn) => {
+  global.it = global.test = (name, fn) => {
     suite.children.push({
       type: 'spec',
       name,
@@ -78,5 +79,6 @@ async function gather(suite, name) {
   global.afterEach = afterEach
   global.afterAll = afterAll
   global.describe = describe
+  global.test = test
   global.it = it
 }
