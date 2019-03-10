@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
 const child_process = require('child_process')
-const fs = require('fs')
 
-fs.writeFileSync(
-  `${__dirname}/__mjstest_temp__.mjs`,
-  `import 'mjstest/src/cli.mjs'`,
-)
-
-console.log(`${__dirname}/__mjstest_temp__.mjs`)
-
-child_process.execSync(
-  `node --experimental-modules ${__dirname}/__mjstest_temp__.mjs`
+child_process.spawn(
+  'node', [
+    '--experimental-modules',
+    `${__dirname}/../src/cli.mjs`,
+    ...process.argv.slice(2),
+  ]
 )
