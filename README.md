@@ -1,4 +1,4 @@
-# mtest - A test runner for .mjs projects
+# mjstest - A test runner for .mjs projects
 
 **Important: beforeEach, afterEach, beforeAll and afterAll is not yet implemented**
 
@@ -35,4 +35,10 @@ describe('hello world', () => {
     expect(test).toBe(it)
   })
 })
+```
+
+# Usage
+
+```bash
+mjstest **/*.spec.mjs
 ```

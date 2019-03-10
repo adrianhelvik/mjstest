@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "../../bin/mtest './**/*.spec.mjs'"
+    "test": "../../bin/mjstest './**/*.spec.mjs'"
   }
 }
