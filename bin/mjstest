@@ -1,4 +1,15 @@
-#!/usr/bin/env sh
+#!/usr/bin/env node
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-node --experimental-modules "$DIR/../src/cli.mjs" "$@"
+const child_process = require('child_process')
+const fs = require('fs')
+
+fs.writeFileSync(
+  `${__dirname}/__mjstest_temp__.mjs`,
+  `import 'mjstest/src/cli.mjs'`,
+)
+
+console.log(`${__dirname}/__mjstest_temp__.mjs`)
+
+child_process.execSync(
+  `node --experimental-modules ${__dirname}/__mjstest_temp__.mjs`
+)

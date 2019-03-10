@@ -1,0 +1,1 @@
+import 'mjstest/src/cli.mjs'
