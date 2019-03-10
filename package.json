@@ -2,6 +2,9 @@
   "name": "mtest",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": {
+    "mtest": "./bin/mtest"
+  },
   "author": "Adrian Helvik <adrian.helvik@specifique.no>",
   "license": "MIT",
   "scripts": {
