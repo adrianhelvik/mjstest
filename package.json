@@ -8,6 +8,7 @@
     "test": "nodemon --experimental-modules run-tests.mjs"
   },
   "dependencies": {
+    "callsite": "^1.0.0",
     "chalk": "^2.4.2",
     "clear": "^0.1.0"
   }

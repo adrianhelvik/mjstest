@@ -9,10 +9,14 @@ const phases = [
   [
     './tests/phase1/gatherSpecsFromFunc.mjs',
     './tests/phase1/gatherSpecs.mjs',
-  ]
+  ],
+  [
+    './tests/phase2/runSpecsWithAssert.mjs',
+  ],
 ]
 
 void async function () {
+  let success = true
   clear()
   for (let i = 0; i < phases.length; i++) {
     const tests = phases[i]
@@ -20,7 +24,9 @@ void async function () {
     console.log(chalk.gray(chalk.bold(`Running phase ${i+1} tests`)))
     for (const filename of tests) {
       try {
-        await import(filename)
+        const value = await import(filename)
+        if (typeof value.default === 'function')
+          await value.default()
         process.stdout.write(chalk.green('·'))
       } catch (e) {
         errors.push({
@@ -31,11 +37,16 @@ void async function () {
       }
     }
     if (errors.length) {
+      success = false
       for (const {filename, stack} of errors)
         console.error(chalk.red(`Failure in "${filename}":\n${chalk.red(chalk.bold(stack))}`))
     } else {
       console.log()
-      console.log(chalk.green(chalk.bold(`All tests in phase ${i+1} passed`)))
+      console.log(chalk.green(`All tests in phase ${i+1} passed`))
     }
   }
+  if (success)
+    console.log(chalk.green(chalk.bold('All tests passed')))
+  else
+    console.log(chalk.red(chalk.bold('Some tests failed')))
 }()
