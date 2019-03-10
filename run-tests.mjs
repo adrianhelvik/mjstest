@@ -4,6 +4,7 @@ import chalk from 'chalk'
 process.on('unhandledRejection', e =>{
   throw e
 })
+let exitStatus
 
 const phases = [
   [
@@ -14,9 +15,32 @@ const phases = [
     './tests/phase2/runSpecsWithAssert.mjs',
   ],
   [
-    () => console.log('-- output from integration of tests --'),
-    './tests/phase3/integration.mjs',
-    () => console.log('-- // output from integration of tests --'),
+    async () => {
+      process.exit = status => exitStatus = status
+      console.log(
+        chalk.black.bgYellow(
+        )
+      )
+      let str = ''
+      const write = process.stdout.write
+      process.stdout.write = s => str += s
+      try {
+        await import('./tests/phase3/integration.mjs')
+          .then(module => module.default())
+      } finally {
+        process.stdout.write = write
+      }
+      console.log()
+      console.log(          chalk.black.bgYellow('                                   '))
+      console.log(chalk.black.underline.bgYellow(' <output from integration of test> '))
+      console.log(          chalk.black.bgYellow('                                   '))
+      console.log(str)
+      console.log(          chalk.black.bgYellow('                                    '))
+      console.log(chalk.black.underline.bgYellow(' </output from integration of test> '))
+      console.log(          chalk.black.bgYellow('                                    '))
+      console.log(     chalk.bold.black.bgYellow('    Visually evaluate the result    '))
+      console.log(          chalk.black.bgYellow('                                    '))
+    },
   ],
 ]
 

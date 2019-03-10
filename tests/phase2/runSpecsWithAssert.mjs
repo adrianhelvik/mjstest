@@ -34,6 +34,7 @@ export default async () => {
     if (result.type === 'error') {
       assert(typeof result.stack === 'string')
       delete result.stack // Don't do any more assertions on the stack
+      delete result.message
     } else {
       assert(result.type === 'success')
       assert(! ('stack' in result))

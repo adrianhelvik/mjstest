@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "nodemon --experimental-modules run-tests.mjs",
-    "integration": "nodemon --experimental-modules --quiet run-integration-tests.mjs"
+    "integration": "nodemon --experimental-modules --quiet run-integration-tests.mjs",
+    "integration:once": "node --experimental-modules run-integration-tests.mjs"
   },
   "dependencies": {
     "callsite": "^1.0.0",
