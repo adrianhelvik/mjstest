@@ -4,10 +4,20 @@ const child_process = require(
   'child_process'
 )
 
+let extraArgs = process.argv.slice(2)
+let watch = false
+
+if (extraArgs.includes('--watch')) {
+  watch = true
+  extraArgs = extraArgs
+    .filter(x => x !== '--watch')
+    .concat(['--quiet'])
+}
+
 const args = [
   '--experimental-modules',
   `${__dirname}/../src/cli.mjs`,
-  ...process.argv.slice(2),
+  ...extraArgs,
 ]
 
 const options = {
@@ -15,7 +25,7 @@ const options = {
 }
 
 child_process.spawnSync(
-  'node',
+  watch ? 'nodemon' : 'node',
   args,
   options,
 )
