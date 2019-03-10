@@ -1,11 +1,21 @@
 #!/usr/bin/env node
 
-const child_process = require('child_process')
+const child_process = require(
+  'child_process'
+)
 
-child_process.spawn(
-  'node', [
-    '--experimental-modules',
-    `${__dirname}/../src/cli.mjs`,
-    ...process.argv.slice(2),
-  ]
+const args = [
+  '--experimental-modules',
+  `${__dirname}/../src/cli.mjs`,
+  ...process.argv.slice(2),
+]
+
+const options = {
+  stdio: 'inherit'
+}
+
+child_process.spawnSync(
+  'node',
+  args,
+  options,
 )
